@@ -1,0 +1,50 @@
+[
+  {
+    "cep": "01001-000",
+    "logradouro": "Praça da Sé",
+    "complemento": "lado ímpar",
+    "bairro": "Sé",
+    "localidade": "São Paulo",
+    "uf": "SP",
+    "ibge": "3550308",
+    "gia": "1004",
+    "ddd": "11",
+    "siafi": "7107"
+  },
+  {
+    "cep": "74495-616",
+    "logradouro": "Rua VC 89",
+    "complemento": "",
+    "bairro": "Conjunto Vera Cruz",
+    "localidade": "Goiânia",
+    "uf": "GO",
+    "ibge": "5208707",
+    "gia": "",
+    "ddd": "62",
+    "siafi": "9373"
+  },
+  {
+    "cep": "52090-340",
+    "logradouro": "Rua Maria Cândida",
+    "complemento": "",
+    "bairro": "Macaxeira",
+    "localidade": "Recife",
+    "uf": "PE",
+    "ibge": "2611606",
+    "gia": "",
+    "ddd": "81",
+    "siafi": "2531"
+  },
+  {
+    "cep": "68904-016",
+    "logradouro": "Passagem Jardim",
+    "complemento": "",
+    "bairro": "Novo Buritizal",
+    "localidade": "Macapá",
+    "uf": "AP",
+    "ibge": "1600303",
+    "gia": "",
+    "ddd": "96",
+    "siafi": "0605"
+  }
+]
