@@ -13,7 +13,7 @@ defmodule GenpagxWeb.AddressView do
   def render("address.json", %{address: address}) do
     %{
       street: address.street,
-      number: address.number,
+      number: address.number || "",
       complement: address.complement || "",
       neighborhood: address.neighborhood,
       city: address.city,
