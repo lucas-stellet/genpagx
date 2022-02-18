@@ -30,7 +30,7 @@ defmodule Genpagx.Services.ViaCEP do
   defp handle_response(request, params) do
     case request do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        if Regex.match?(~r/erro/, body) do
+        if Regex.match?(~r/^[0-9]{5}-[0-9]{3}$/, body) do
           Logger.debug("CEP #{params} not found")
           {:error, "CEP not found"}
         else
