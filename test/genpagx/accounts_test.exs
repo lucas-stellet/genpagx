@@ -70,13 +70,13 @@ defmodule Genpagx.AccountsTest do
     test "returns an user" do
       user = insert(:user)
 
-      assert {:ok, inserted_user} = Accounts.get_user(user.id)
+      assert {:ok, inserted_user} = Accounts.get_user_by_id(user.id)
 
       assert inserted_user.id == user.id
     end
 
     test "returns an error tuple when the user is not inserted" do
-      assert {:error, "User not found"} = Accounts.get_user(Ecto.UUID.generate())
+      assert {:error, "User not found"} = Accounts.get_user_by_id(Ecto.UUID.generate())
     end
   end
 
