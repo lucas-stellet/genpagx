@@ -23,6 +23,7 @@ defmodule GenpagxWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import GenpagxWeb.ConnCase
+      import Genpagx.Factory
 
       alias GenpagxWeb.Router.Helpers, as: Routes
 
