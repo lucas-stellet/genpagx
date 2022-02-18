@@ -24,6 +24,7 @@ defmodule Genpagx.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Genpagx.DataCase
+      import Genpagx.Factory
     end
   end
 
