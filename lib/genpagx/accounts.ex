@@ -16,8 +16,8 @@ defmodule Genpagx.Accounts do
   ```
   iex> list_users()
   [%User{}, ...]
-  ```
 
+  ```
   """
   def list_users do
     Repo.all(User)
@@ -25,8 +25,6 @@ defmodule Genpagx.Accounts do
   end
 
   def list_users(per_page, offset) do
-    IO.puts("heere")
-
     User
     |> paginate(per_page, offset)
     |> Repo.all()
@@ -45,12 +43,14 @@ defmodule Genpagx.Accounts do
   Returns {:ok, User} if found, {:error, "User not found"} otherwise.
 
   ## Examples
+
   ```
   iex> get_user("7e664b2f-2dec-41a1-96a4-d1da7083f9ad")
   {:ok, %User{}}
 
   iex> get_user("invalid_id")
   {:error, "User not found"}
+
   ```
 
   """
@@ -70,11 +70,13 @@ defmodule Genpagx.Accounts do
 
   ## Examples
 
-      iex> create_user(%{field: value})
-      {:ok, %User{}}
+  ```
+  iex> create_user(%{field: value})
+  {:ok, %User{}}
 
-      iex> create_user(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+  iex> create_user(%{field: bad_value})
+  {:error, %Ecto.Changeset{}}
+  ```
 
   """
   def create_user(attrs \\ %{}) do
@@ -88,16 +90,19 @@ defmodule Genpagx.Accounts do
 
   ## Examples
 
-      iex> update_user(user, %{field: new_value})
-      {:ok, %User{}}
+  ```
+  iex> update_user(user, %{field: new_value})
+  {:ok, %User{}}
 
-      iex> update_user(user, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
+  iex> update_user(user, %{field: bad_value})
+  {:error, %Ecto.Changeset{}}
+
+  ```
 
   """
   def update_user(%User{} = user, attrs) do
     user
-    |> User.changeset(attrs)
+    |> User.update_changeset(attrs)
     |> Repo.update()
   end
 
@@ -106,27 +111,22 @@ defmodule Genpagx.Accounts do
 
   ## Examples
 
-      iex> delete_user(user)
+  ```
+  iex> delete_user(user)
       {:ok, %User{}}
 
-      iex> delete_user(user)
-      {:error, %Ecto.Changeset{}}
+  iex> delete_user(user)
+  {:error, %Ecto.Changeset{}}
+  ```
 
   """
   def delete_user(%User{} = user) do
-    Repo.delete(user)
-  end
+    case get_user(user.id) do
+      {:ok, user} ->
+        Repo.delete(user)
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking user changes.
-
-  ## Examples
-
-      iex> change_user(user)
-      %Ecto.Changeset{data: %User{}}
-
-  """
-  def change_user(%User{} = user, attrs \\ %{}) do
-    User.changeset(user, attrs)
+      {:error, _} ->
+        {:error, "User not found"}
+    end
   end
 end
