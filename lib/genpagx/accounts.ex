@@ -45,17 +45,17 @@ defmodule Genpagx.Accounts do
   ## Examples
 
   ```
-  iex> get_user("7e664b2f-2dec-41a1-96a4-d1da7083f9ad")
+  iex> get_user_by_id("7e664b2f-2dec-41a1-96a4-d1da7083f9ad")
   {:ok, %User{}}
 
-  iex> get_user("invalid_id")
+  iex> get_user_by_id("invalid_id")
   {:error, "User not found"}
 
   ```
 
   """
 
-  def get_user(id) do
+  def get_user_by_id(id) do
     case Repo.get(User, id) do
       nil ->
         {:error, "User not found"}
@@ -121,7 +121,7 @@ defmodule Genpagx.Accounts do
 
   """
   def delete_user(%User{} = user) do
-    case get_user(user.id) do
+    case get_user_by_id(user.id) do
       {:ok, user} ->
         Repo.delete(user)
 
