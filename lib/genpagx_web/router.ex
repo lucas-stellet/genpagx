@@ -7,5 +7,7 @@ defmodule GenpagxWeb.Router do
 
   scope "/api", GenpagxWeb do
     pipe_through :api
+
+    resources "/accounts", UserController, except: [:new, :edit]
   end
 end
