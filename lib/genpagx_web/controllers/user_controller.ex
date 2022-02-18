@@ -51,18 +51,18 @@ defmodule GenpagxWeb.UserController do
   end
 
   def update(conn, %{"id" => id, "name" => name, "address" => address_params}) do
-    with {:ok, user} <- Accounts.get_user(id, :preloaded),
+    with {:ok, user} <- Accounts.get_user(id),
          {:ok, _user_updated} <- Accounts.update_user(user, %{name: name}),
          {:Ok, _address_updated} <- Addresses.update_address(user.address, address_params) do
-      {:ok, user} = Accounts.get_user(id, :preloaded)
+      {:ok, user} = Accounts.get_user(id)
       render(conn, "show.json", user: user)
     end
   end
 
   def update(conn, %{"id" => id, "address" => address_params}) do
-    with {:ok, user} <- Accounts.get_user(id, :preloaded),
+    with {:ok, user} <- Accounts.get_user(id),
          {:Ok, _} <- Addresses.update_address(user.address, address_params) do
-      {:ok, user} = Accounts.get_user(id, :preloaded)
+      {:ok, user} = Accounts.get_user(id)
       render(conn, "show.json", user: user)
     end
   end
