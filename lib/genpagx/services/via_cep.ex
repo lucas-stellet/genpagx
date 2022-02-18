@@ -10,10 +10,16 @@ defmodule Genpagx.Services.ViaCEP do
 
   @spec validate_cep(binary()) :: {:ok, map()} | {:error, binary()}
   def validate_cep(cep) do
-    get_via_cep_url()
-    |> replace_url_with_cep(cep)
-    |> HTTPoison.get()
-    |> handle_response(cep)
+    case cep_is_valid?(cep) do
+      true ->
+        get_via_cep_url()
+        |> replace_url_with_cep(cep)
+        |> HTTPoison.get()
+        |> handle_response(cep)
+
+      false ->
+        {:error, "Invalid postal code format"}
+    end
   end
 
   defp get_via_cep_url,
@@ -38,4 +44,6 @@ defmodule Genpagx.Services.ViaCEP do
         {:error, reason}
     end
   end
+
+  defp cep_is_valid?(cep), do: Regex.match?(~r/^\d{5}-?\d{3}$/, cep)
 end
