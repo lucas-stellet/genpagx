@@ -1,19 +1,29 @@
 # Genpagx
 
-To start your Phoenix server:
+## Acessando a API online
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+A API está disponível no endereço abaixo:
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+[genpagx.gigalixirapp.com/api](https://genpagx.gigalixirapp.com/api)
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Rodando localmente
 
-## Learn more
+Com a intenção de facilitar a iniclização e o uso da aplicação localmente, criei um setup com Docker.
+Para iniciar basta ter o docker e o docker-compose instalados na sua máquina, dessa forma você tera um container Elixir/Phoenix com a aplicação e um database PostgreSQL rodando localmente.
+Execute o comando abaixo e aguarde os logs mais abaixo aparecerem em seu terminal.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```bash
+docker-compose up
+```
+
+```
+genpagx    | [info] Access GenpagxWeb.Endpoint at http://localhost:4000
+genpagx    | [info] GET /api/accounts
+```
+
+Com esas informações em tela a sua aplicação estará funcionando e pronto para o acesso.
+## Postman collection
+
+Caso você utilize o Postman como interface para enviar requisições para API's, basta acessar o link abaixo que você terá acesso a uma coleção de requisições tanto no ambiente de produção quanto do de desenvolvimento.
+
+### [Genpagx Public Workspace Postman](https://www.postman.com/restless-capsule-16017/workspace/d8442359-86e8-4f0b-9f9a-dee0db1716e6)
