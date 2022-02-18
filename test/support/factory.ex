@@ -15,12 +15,15 @@ defmodule Genpagx.Factory do
     }
   end
 
+  @states ~w( AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO )a
+
   def address_factory do
     %Address{
       street: FakerAddressBR.street_name(),
       city: FakerAddressBR.city(),
       neighborhood: FakerAddressBR.neighborhood(),
-      state: FakerAddressBR.state()
+      state: Enum.random(@states),
+      postal_code: Faker.Util.format("%5d-%3d")
     }
   end
 end

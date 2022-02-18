@@ -28,15 +28,15 @@ defmodule Genpagx.Addresses do
 
   ## Examples
   ```
-  iex> get_address("7e664b2f-2dec-41a1-96a4-d1da7083f9ad)
+  iex> get_address_by_id("7e664b2f-2dec-41a1-96a4-d1da7083f9ad)
   {:ok, %User{}}
 
-  iex> get_user("invalid_id")
+  iex> get_address_by_id("invalid_id")
   {:error, "User not found"}
   ```
 
   """
-  def get_address(id) do
+  def get_address_by_id(id) do
     case Repo.get(Address, id) do
       nil -> {:error, "Address not found"}
       address -> {:ok, address}
@@ -92,19 +92,12 @@ defmodule Genpagx.Addresses do
 
   """
   def delete_address(%Address{} = address) do
-    Repo.delete(address)
-  end
+    case get_address_by_id(address.id) do
+      {:ok, address} ->
+        Repo.delete(address)
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking address changes.
-
-  ## Examples
-
-      iex> change_address(address)
-      %Ecto.Changeset{data: %Address{}}
-
-  """
-  def change_address(%Address{} = address, attrs \\ %{}) do
-    Address.changeset(address, attrs)
+      {:error, _} ->
+        {:error, "Address not found"}
+    end
   end
 end
